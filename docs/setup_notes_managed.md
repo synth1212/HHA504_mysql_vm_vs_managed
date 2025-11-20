@@ -11,7 +11,8 @@
 3. Add a new user with a username and set a password for it.
 
 ## Roadblocks
-1. Initially tried using the connection name to connect to the database externally. However, found the public IP and used that to connect to the database.
+1. After fixing permissions, the python script failed to connect beucase the .env credentials were not matching the Cloud SQL user/password. 
+
 
 ## Time to setup
 It took a total aboutabout 15 minutes to create of the database, connecting to the python script, and running a query to check if the script worked properly.
