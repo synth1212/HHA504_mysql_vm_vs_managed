@@ -14,10 +14,10 @@ from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 
 # --- 0) Load environment ---
-load_dotenv("assignment_4/.env")  # reads .env in current working directory
+load_dotenv("scripts/.env")  # reads .env in current working directory
 
 VM_DB_HOST = os.getenv("VM_DB_HOST")
-VM_DB_PORT = os.getenv("VM_DB_PORT", "3306")
+VM_DB_PORT = os.getenv("VM_DB_PORT")
 VM_DB_USER = os.getenv("VM_DB_USER")
 VM_DB_PASS = os.getenv("VM_DB_PASS")
 VM_DB_NAME = os.getenv("VM_DB_NAME")
@@ -28,7 +28,7 @@ print("[ENV] VM_DB_USER:", VM_DB_USER)
 print("[ENV] VM_DB_NAME:", VM_DB_NAME)
 
 # --- 1) Connect to server (no DB) and ensure database exists ---
-server_url = f"mysql+pymysql://{VM_DB_USER}:{VM_DB_PASS}@{VM_DB_HOST}:{VM_DB_PORT}/{VM_DB_NAME}?ssl=false"
+server_url = f"mysql+pymysql://{VM_DB_USER}:{VM_DB_PASS}@{VM_DB_HOST}:{VM_DB_PORT}/{VM_DB_NAME}"
 print("[STEP 1] Connecting to MySQL server (no DB):", server_url.replace(VM_DB_PASS, "*****"))
 t0 = time.time()
 
@@ -40,7 +40,7 @@ print(f"[OK] Ensured database `{VM_DB_NAME}` exists.")
 
 # --- 2) Connect to the target database ---
 #### ignore ssl_connection for VM setup
-db_url = f"mysql+pymysql://{VM_DB_USER}:{VM_DB_PASS}@{VM_DB_HOST}:{VM_DB_PORT}/{VM_DB_NAME}?ssl=false"
+db_url = f"mysql+pymysql://{VM_DB_USER}:{VM_DB_PASS}@{VM_DB_HOST}:{VM_DB_PORT}/{VM_DB_NAME}"
 engine = create_engine(db_url)
 
 # --- 3) Create a DataFrame and write to a table ---
@@ -55,7 +55,7 @@ df = pd.DataFrame(
     ]
 )
 
-df.to_sql(table_name, con=engine, if_exists="replace", index=False, connect_args={"ssl": {"ssl_disabled": True}})
+df.to_sql(table_name, con=engine, if_exists="replace", index=False)
 
 # --- 4) Read back a quick check ---
 print("[STEP 4] Reading back row count ...")
