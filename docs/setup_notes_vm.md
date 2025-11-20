@@ -1,4 +1,5 @@
 # Instruction for Setup for VM MySQL:
+
 ## VM creation
 1. Select instance to create.
 2. Choose E2 for price and usability.
@@ -21,5 +22,8 @@
 6. Download Nano
 7. Type `sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf` to edit mysqld.cnf file
 6. Input `0.0.0.0/0` in the mysqld.cnf to allow for other network connections.
-7. Researt SSH and input `mysql -u 'xxx' -p` to locally test the user connection to mysql.
+7. Restart SSH and input `mysql -u 'xxx' -p` to locally test the user connection to mysql.
 8. Input the password you set to the username.
+
+## Time to setup
+It took a total about 30 minutes to create of the database, connecting to the python script, connecting to ssh and installing mysql, and running a query to check if the script worked properly.
