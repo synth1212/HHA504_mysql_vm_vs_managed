@@ -1,2 +1,11 @@
 # Instructions: A short paragraph on which you would choose in production and why
 * Write approximately 200-400 words concluding which you’d choose in production for: (a) a small student app; (b) a departmental analytics DB; (c) a HIPAA-aligned workload (assume a BAA is available in your cloud).
+
+## For a small student app
+After working with both a self-managed MySQL server operating on a Google Compute Engine virtual machine (VM) and a Google Cloud SQL managed MySQL instance, it is clear that the managed option is better in line with long-term production stability, security, and maintenance. I would select Cloud SQL for a small student application since it removes the majority of the operational challenges I encountered on the virtual machine (VM). For instance, there is no need to manually install MySQL, configure users from scratch, enable firewall ports, or handle OS-level difficulties. 
+
+## For a departmental analytics 
+Because of its built-in scalability, high availability configurations, and simpler connectivity from other GCP services, Cloud SQL continues to be the better option for a departmental analytics database. Unlike having to worry with OS performance modifications, the managed instance in my example enabled dependable Python execution, consistent connection management, and smooth querying using the Cloud SQL console. An analytics team that is primarily concerned with data rather than server administration would find it difficult to handle the continuous updating and performance monitoring.
+
+## For a HIPAA-aligned workload 
+If a BAA is in place, I would select Cloud SQL once more for a workload that complies with HIPAA regulations. Although the virtual machine (VM) provided flexibility, I had to manually handle all encryption and network hardening. On the other hand, Cloud SQL comes pre-installed with managed encryption, IAM-based access, SSL enforcement, automated backups, and audit logging. The likelihood of misconfigurations like the ones I experienced during setup is significantly decreased by these features. The managed database is the safest and most compliant option since reducing attack surface and operational accountability is crucial in a genuine healthcare setting.
